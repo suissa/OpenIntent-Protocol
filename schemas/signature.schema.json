@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openintent.org/schemas/signature-1.0.0.json",
+  "title": "OpenIntent Signature Envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["algorithm", "key_id", "signer", "nonce", "issued_at", "expires_at", "payload_hash", "signature"],
+  "properties": {
+    "algorithm": {"const": "Ed25519"},
+    "key_id": {"type": "string", "minLength": 1},
+    "signer": {"type": "string", "minLength": 1},
+    "nonce": {"type": "string", "minLength": 1},
+    "issued_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "payload_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "signature": {"type": "string", "minLength": 1}
+  }
+}
