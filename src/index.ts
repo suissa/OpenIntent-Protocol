@@ -484,7 +484,7 @@ export class AuditLog {
   }
 
   list(): AuditRecord[] {
-    return this.records.map((record) => ({ ...record }));
+    return JSON.parse(JSON.stringify(this.records)) as AuditRecord[];
   }
 }
 
