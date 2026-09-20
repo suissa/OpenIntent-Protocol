@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openintent.org/schemas/intent-1.0.0.json",
+  "title": "OpenIntent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "type", "protocol_version", "contract_version", "actor", "capability", "input"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9._:-]+$"},
+    "type": {"type": "string", "minLength": 1},
+    "protocol_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "contract_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "actor": {"type": "string", "minLength": 1},
+    "capability": {"type": "string", "minLength": 1},
+    "input": {},
+    "requested_features": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "idempotency_key": {"type": "string", "minLength": 1},
+    "causation_id": {"type": "string", "minLength": 1},
+    "extensions": {
+      "type": "object",
+      "patternProperties": {"^x-[A-Za-z0-9._-]+$": {}},
+      "additionalProperties": false
+    }
+  }
+}
