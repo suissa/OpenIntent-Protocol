@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openintent.org/schemas/negotiation-1.0.0.json",
+  "title": "OpenIntent Compatibility Negotiation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["protocol_versions", "contract_versions", "required_features", "compatibility"],
+  "properties": {
+    "protocol_versions": {"type": "array", "items": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"}, "minItems": 1, "uniqueItems": true},
+    "contract_versions": {"type": "array", "items": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"}, "minItems": 1, "uniqueItems": true},
+    "required_features": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "compatibility": {"enum": ["exact", "backward", "forward", "same-major"]}
+  }
+}
