@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openintent.org/schemas/execution-1.0.0.json",
+  "title": "OpenIntent Execution",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["execution_id", "intent_id", "idempotency_key", "state", "sequence", "created_at", "updated_at", "progress"],
+  "properties": {
+    "execution_id": {"type": "string", "pattern": "^exec_[0-9]+$"},
+    "intent_id": {"type": "string", "minLength": 1},
+    "idempotency_key": {"type": "string", "minLength": 1},
+    "state": {"enum": ["accepted", "running", "waiting", "succeeded", "failed", "cancelled", "expired"]},
+    "sequence": {"type": "integer", "minimum": 0},
+    "created_at": {"type": "string", "format": "date-time"},
+    "updated_at": {"type": "string", "format": "date-time"},
+    "progress": {"type": "integer", "minimum": 0, "maximum": 100},
+    "last_error": {"type": "string"}
+  }
+}
