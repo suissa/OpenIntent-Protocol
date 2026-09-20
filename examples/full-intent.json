@@ -1,0 +1,18 @@
+{
+  "id": "intent:order.reserve",
+  "type": "OrderReservation",
+  "protocol_version": "1.0.0",
+  "contract_version": "1.0.0",
+  "actor": "human:suissa",
+  "capability": "commerce.order.reserve",
+  "input": {
+    "order_id": "order:123",
+    "items": [{"sku": "sku:coffee", "quantity": 2}]
+  },
+  "requested_features": ["intent-signature", "audit-trace"],
+  "idempotency_key": "order:123:reserve:1",
+  "extensions": {
+    "x-open-delegation": "delegation:abc",
+    "x-proof-of-human-return": "proof:xyz"
+  }
+}
