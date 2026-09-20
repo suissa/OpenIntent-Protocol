@@ -50,7 +50,7 @@ interface Semver {
 }
 
 function parseSemver(version: string): Semver {
-  const match = /^(\\d+)\\.(\\d+)\\.(\\d+)(?:-[0-9A-Za-z.-]+)?$/.exec(version);
+  const match = /^(\d+)\.(\d+)\.(\d+)(?:-[0-9A-Za-z.-]+)?$/.exec(version);
   if (!match) {
     throw new Error("INVALID_VERSION");
   }
@@ -536,11 +536,7 @@ export function validateH2A2HAuthority(input: AuthorityCheckInput): {
 } {
   const now = (input.now ?? new Date()).getTime();
   const delegation = input.authority.delegation;
-  if (!delegation) {
-    if (input.authority.policy.require_human_return) {
-      return { accepted: false, reason_code: "DELEGATION_REQUIRED" };
-    }
-  } else {
+  if (delegation) {
     if (delegation.revoked) return { accepted: false, reason_code: "DELEGATION_REVOKED" };
     if (new Date(delegation.expires_at).getTime() <= now) {
       return { accepted: false, reason_code: "DELEGATION_EXPIRED" };
