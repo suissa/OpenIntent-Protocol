@@ -1,0 +1,19 @@
+{
+  "name": "@allascode/open-intent-protocol",
+  "version": "0.1.0",
+  "description": "Reference implementation and schemas for the OpenIntent Protocol.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "node --import tsx --test test/*.test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openintent.org/schemas/authority-1.0.0.json",
+  "title": "H2A2H Authority Envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["policy"],
+  "properties": {
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["require_human_return"],
+      "properties": {"require_human_return": {"type": "boolean"}}
+    },
+    "delegation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "delegator", "delegatee", "audience", "capabilities", "issued_at", "expires_at"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "delegator": {"type": "string", "minLength": 1},
+        "delegatee": {"type": "string", "minLength": 1},
+        "audience": {"type": "string", "minLength": 1},
+        "capabilities": {"type": "array", "items": {"type": "string"}, "minItems": 1, "uniqueItems": true},
+        "issued_at": {"type": "string", "format": "date-time"},
+        "expires_at": {"type": "string", "format": "date-time"},
+        "revoked": {"type": "boolean"}
+      }
+    },
+    "human_return": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["proof_id", "subject", "audience", "intent_id", "verified", "expires_at"],
+      "properties": {
+        "proof_id": {"type": "string", "minLength": 1},
+        "subject": {"type": "string", "minLength": 1},
+        "audience": {"type": "string", "minLength": 1},
+        "intent_id": {"type": "string", "minLength": 1},
+        "verified": {"type": "boolean"},
+        "expires_at": {"type": "string", "format": "date-time"}
+      }
+    }
+  }
+}

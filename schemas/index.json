@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openintent.org/schemas/index.json",
+  "title": "OpenIntent Schema Catalog",
+  "type": "object",
+  "required": ["protocol_version", "schemas"],
+  "properties": {
+    "protocol_version": {"const": "1.0.0"},
+    "schemas": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    }
+  }
+}
