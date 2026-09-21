@@ -2,7 +2,7 @@
 
 ## Status
 
-Draft.
+Implemented reference profile.
 
 ## Category
 
@@ -80,9 +80,16 @@ An implementation is conformant when it can:
 
 ## Implementation Notes
 
-The first implementation profile uses Zig 0.16 for parser, test generation and OpenAPI generation. OpenAPI is used for REST and `x-oec-*` extensions represent non-REST internal channels.
+The executable reference profile uses TypeScript for declaration validation, test generation and OpenAPI generation. A future Zig port MUST preserve the same schemas, reason codes and trace events. OpenAPI is used for REST and `x-oec-*` extensions represent non-REST internal channels.
 
 ## Open Questions
 
 - Whether local in-process delivery should be a first-class `local` channel or an optimization below the channel layer.
 - Whether STDIO should be modeled as a channel binding or as an adapter runtime for tools.
+
+
+## Executable reference profile
+
+`src/oec.ts` preserves the processing boundary: an OEC delivery requires an accepted intent, an allowed authority decision and a trusted caller. The route hash is checked only after those predicates and is recorded as route integrity, never as authorization.
+
+Observable events are emitted through `OecTrace` and carry `internal: true`.

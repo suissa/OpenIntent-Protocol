@@ -2,7 +2,7 @@
 
 ## Status
 
-Draft.
+Implemented reference profile.
 
 ## Category
 
@@ -71,9 +71,16 @@ The generator tests SHOULD validate:
 
 ## Implementation Notes
 
-The current Zig generator should treat `observe` routes as no-body stream routes when only `stream: sse` is declared. It should avoid defaulting such routes to `payloadEnvelope` in `x-oec-body-kind`.
+The TypeScript generator treats `observe` routes as no-body stream routes when only `stream: sse` is declared. It avoids defaulting such routes to `payloadEnvelope` in `x-oec-body-kind`.
 
 ## Open Questions
 
 - Whether AsyncAPI should also be generated for WebSocket and event streams.
 - Whether gRPC descriptors should be generated from the same OEC declaration.
+
+
+## Executable reference profile
+
+`generateOecOpenApi` emits OpenAPI 3.1, converts `:id` and `:token` to `{id}` and groups methods under one path item. Routes with body kind `none` omit `requestBody`.
+
+Non-REST bindings appear only in `x-oec-channels`; the generated document is marked `x-oec-visibility: internal`.

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openintent.org/schemas/oec-openapi-0.1.0.json",
+  "title": "Internal OEC OpenAPI Metadata",
+  "type": "object",
+  "required": ["openapi", "info", "paths", "x-oec-visibility", "x-oec-channels"],
+  "properties": {
+    "openapi": {"const": "3.1.0"},
+    "info": {"type": "object"},
+    "paths": {"type": "object"},
+    "x-oec-visibility": {"const": "internal"},
+    "x-oec-channels": {"type": "array", "items": {"type": "object", "required": ["channel", "entity", "visibility"], "properties": {"channel": {"type": "string"}, "entity": {"type": "string"}, "visibility": {"const": "internal"}}}}
+  },
+  "additionalProperties": true
+}

@@ -2,7 +2,7 @@
 
 ## Status
 
-Draft.
+Implemented reference profile.
 
 ## Category
 
@@ -74,9 +74,16 @@ A conformant generator should emit tests for:
 
 ## Implementation Notes
 
-The first implementation profile targets Zig 0.16. `std.ArrayList` usage should follow the allocator-less pattern and generated tests should import a small OEC validation module.
+The reference profile targets the existing TypeScript runtime. Generated tests import the OEC validation module and use an injected test secret provider; they do not require a live network, process or secret store.
 
 ## Open Questions
 
 - Whether generated tests should be golden-file based or property-based for larger schemas.
 - Whether each behavior should generate its own fixture file.
+
+
+## Executable reference profile
+
+`generateOecConformanceCases` generates happy, missing-header, method-mismatch, path-mismatch, body-mismatch and stream-accept cases from the same declaration. `generateOecConformanceManifest` records the declaration SHA-256.
+
+Tests use `MapOecSecretProvider` and never require real secrets, servers or external services.

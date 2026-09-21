@@ -565,3 +565,5 @@ export function validateH2A2HAuthority(input: AuthorityCheckInput): {
 
   return { accepted: true };
 }
+
+export * from "./oec.js";

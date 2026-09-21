@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openintent.org/schemas/oec-declaration-0.1.0.json",
+  "title": "OpenEntity Channels Declaration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["protocol", "version", "visibility", "defaults", "entities"],
+  "properties": {
+    "protocol": {"const": "EntityCommunicationProtocol"},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "visibility": {"enum": ["internal", "development"]},
+    "defaults": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requiredHeaders", "hashing"],
+      "properties": {
+        "requiredHeaders": {
+          "type": "array",
+          "items": {"type": "string", "pattern": "^X-OEC-[A-Za-z0-9-]+$"},
+          "uniqueItems": true
+        },
+        "hashing": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["algorithm", "secretRef", "input"],
+          "properties": {
+            "algorithm": {"const": "hmacSha256"},
+            "secretRef": {"type": "string", "minLength": 1},
+            "input": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {"enum": ["entityName", "entityId", "behavior", "channel", "method", "path", "bodyKind"]}
+            }
+          }
+        }
+      }
+    },
+    "entities": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "$ref": "#/$defs/entity"
+      }
+    }
+  },
+  "$defs": {
+    "entity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaRef", "idField", "channels"],
+      "properties": {
+        "schemaRef": {"type": "string", "minLength": 1},
+        "idField": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_]*$"},
+        "canonicalLabel": {"type": "string", "minLength": 1},
+        "channels": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {"$ref": "#/$defs/channel"}
+        }
+      }
+    },
+    "channel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enabled", "routes"],
+      "properties": {
+        "enabled": {"type": "boolean"},
+        "base": {"type": "string", "pattern": "^/"},
+        "routes": {"type": "array", "items": {"$ref": "#/$defs/route"}}
+      }
+    },
+    "route": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "method", "path", "behavior"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "method": {"enum": ["GET", "POST", "PUT", "PATCH", "DELETE"]},
+        "path": {"type": "string", "pattern": "^/"},
+        "behavior": {"type": "string", "minLength": 1},
+        "body": {"enum": ["payloadEnvelope", "entitySchema", "none"]},
+        "stream": {"enum": ["sse", "ndjson", "websocket"]},
+        "requiredHeaders": {"type": "array", "items": {"type": "string", "pattern": "^X-OEC-[A-Za-z0-9-]+$"}, "uniqueItems": true},
+        "accept": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    }
+  }
+}

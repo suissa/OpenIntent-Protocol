@@ -2,7 +2,7 @@
 
 ## Status
 
-Draft.
+Implemented reference profile.
 
 ## Category
 
@@ -85,3 +85,11 @@ The current generator should normalize missing route body to `none`. OpenAPI out
 
 - Whether route declarations should support explicit response schemas.
 - Whether `behavior` should become mandatory for non-CRUD routes.
+
+
+## Executable reference profile
+
+`oec-declaration.schema.json` defines identity, channels and routes. `normalizeOecBodyKind` resolves an omitted body to `none` for stream routes and to `payloadEnvelope` for ordinary request routes.
+
+`matchOecRoutePath` performs real segment matching for `:id`, `:token` and other named parameters. Parameters cannot cross path segments.
+

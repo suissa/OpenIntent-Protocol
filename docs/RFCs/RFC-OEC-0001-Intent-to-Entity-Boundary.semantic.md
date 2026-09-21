@@ -2,7 +2,7 @@
 
 ## Status
 
-Draft.
+Implemented reference profile.
 
 ## Category
 
@@ -76,3 +76,11 @@ For the current WhatsApp-first orchestrator, the webhook receiver should create 
 
 - Whether the orchestrator should persist the chosen channel in the audit record or only persist the selected capability and route hash.
 - Whether development mode may expose REST channels directly on localhost.
+
+
+## Executable reference profile
+
+`validateOecDelivery` is the executable boundary. It rejects direct entity delivery without accepted intent context, authority approval or a trusted caller. The request carries `intentId` and `executionId`; the public contract remains the OpenIntent document.
+
+`OecDeliveryRequest` is internal and is not exposed as a public endpoint contract.
+

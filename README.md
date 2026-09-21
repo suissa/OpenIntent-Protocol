@@ -44,6 +44,16 @@ import { ExecutionStore, negotiate } from "@allascode/open-intent-protocol";
 
 The reference implementation deliberately does not select a transport or treat discovery as authorization. OpenEntityChannels, HTTP/3, QUIC, NATS, Kafka and other adapters can be added without changing the semantic contract.
 
+## OpenEntity Channels reference profile
+
+The OEC profile is an internal delivery layer, not a public API. It is declared once in `examples/oec-user.json` and can generate internal OpenAPI metadata, conformance cases and a declaration digest:
+
+~~~bash
+npm run generate:oec
+~~~
+
+The implementation preserves the Intent boundary, validates `body: none`, matches `:id` and `:token` path parameters, verifies HMAC route integrity with an injected secret provider, and selects local, gRPC, WebSocket, MCP or STDIO bindings deterministically. Route integrity never authorizes a request.
+
 ## H2A2H boundary
 
 OpenIntent carries references and verifiable claims from OpenDelegation Protocol and Proof-of-Human-Return. It preserves the separation between:

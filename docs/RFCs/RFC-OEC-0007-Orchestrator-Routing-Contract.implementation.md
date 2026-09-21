@@ -2,7 +2,7 @@
 
 ## Status
 
-Draft.
+Implemented reference profile.
 
 ## Category
 
@@ -89,3 +89,11 @@ The current WhatsApp orchestrator can start with a simple routing table. Later, 
 
 - Whether routing policy should be declared in the OEC YAML or in the orchestrator config.
 - Whether route selection should be part of OpenIntent audit or OEC observability only.
+
+
+## Executable reference profile
+
+`selectOecBinding` is the deterministic routing policy. It receives locality, streaming, subprocess, tool and service-to-service constraints and chooses only from available bindings.
+
+`OecDeliveryPlan` records intent, execution, entity, behavior, channel, route, policy reason and internal visibility. Route selection is observable, while authorization remains an upstream OpenIntent decision.
+

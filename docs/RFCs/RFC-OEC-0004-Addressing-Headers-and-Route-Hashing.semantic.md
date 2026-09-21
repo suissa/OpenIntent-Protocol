@@ -2,7 +2,7 @@
 
 ## Status
 
-Draft.
+Implemented reference profile.
 
 ## Category
 
@@ -83,3 +83,11 @@ The first generator may validate the presence of headers without computing the H
 
 - Whether route hash should include behavior name and channel name by default.
 - Whether nonce and timestamp should be mandatory for all cross-process calls.
+
+
+## Executable reference profile
+
+`computeOecRouteHash` uses HMAC-SHA256 over a length-delimited canonical sequence in the declared input order. `OecSecretProvider` resolves a `secretRef`; the secret value is never serialized into documentation or trace.
+
+`verifyOecRouteHash` fails closed for missing secrets, unsupported algorithms, missing hashes and mismatches. A valid hash cannot turn a denied authority decision into an allowed delivery.
+

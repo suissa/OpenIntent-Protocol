@@ -2,7 +2,7 @@
 
 ## Status
 
-Draft.
+Implemented reference profile.
 
 ## Category
 
@@ -75,3 +75,11 @@ For the current orchestrator, use local function/actor delivery when the entity 
 
 - Whether `local` and `stdio` should be formal OEC channel names in v0.2.
 - Whether gRPC over Unix domain sockets should be the default same-host multi-process profile.
+
+
+## Executable reference profile
+
+`selectOecBinding` implements deterministic preferences: local for same-process delivery, gRPC for service RPC, WebSocket for realtime, MCP for agent tools and STDIO for subprocess tools.
+
+Bindings carry the same entity, behavior, body kind, intent correlation and internal metadata. Selection does not grant authorization.
+

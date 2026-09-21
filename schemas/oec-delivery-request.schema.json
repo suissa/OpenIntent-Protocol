@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openintent.org/schemas/oec-delivery-request-0.1.0.json",
+  "title": "Internal OEC Delivery Request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["intentId", "executionId", "entity", "entityId", "behavior", "channel", "route", "method", "path", "bodyKind", "metadata", "caller", "intentAccepted", "authorizationDecision", "crossesTrustBoundary"],
+  "properties": {
+    "intentId": {"type": "string", "minLength": 1},
+    "executionId": {"type": "string", "minLength": 1},
+    "entity": {"type": "string", "minLength": 1},
+    "entityId": {"type": "string", "minLength": 1},
+    "behavior": {"type": "string", "minLength": 1},
+    "channel": {"enum": ["rest", "websocket", "grpc", "mcp", "stdio", "local"]},
+    "route": {"type": "string", "minLength": 1},
+    "method": {"enum": ["GET", "POST", "PUT", "PATCH", "DELETE"]},
+    "path": {"type": "string", "pattern": "^/"},
+    "bodyKind": {"enum": ["payloadEnvelope", "entitySchema", "none"]},
+    "body": {},
+    "streamAccept": {"type": "string"},
+    "metadata": {"type": "object", "additionalProperties": {"type": "string"}},
+    "caller": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["agentId", "trusted"],
+      "properties": {"agentId": {"type": "string", "minLength": 1}, "trusted": {"type": "boolean"}}
+    },
+    "intentAccepted": {"type": "boolean"},
+    "authorizationDecision": {"enum": ["allowed", "denied"]},
+    "crossesTrustBoundary": {"type": "boolean"},
+    "routeHash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  }
+}

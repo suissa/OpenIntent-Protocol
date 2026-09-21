@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openintent.org/schemas/oec-trace-event-0.1.0.json",
+  "title": "Internal OEC Trace Event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["event", "trace_id", "span_id", "internal"],
+  "properties": {
+    "event": {"type": "string", "pattern": "^oec\\."},
+    "trace_id": {"type": "string", "minLength": 1},
+    "span_id": {"type": "string", "minLength": 1},
+    "parent_span_id": {"type": "string"},
+    "intent_id": {"type": "string"},
+    "execution_id": {"type": "string"},
+    "entity": {"type": "string"},
+    "entity_id": {"type": "string"},
+    "behavior": {"type": "string"},
+    "channel": {"enum": ["rest", "websocket", "grpc", "mcp", "stdio", "local"]},
+    "route": {"type": "string"},
+    "route_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "route_integrity": {"enum": ["verified", "failed", "not_required"]},
+    "authorization_decision": {"enum": ["allowed", "denied"]},
+    "reason_code": {"type": "string"},
+    "duration_ms": {"type": "number", "minimum": 0},
+    "internal": {"const": true}
+  }
+}
