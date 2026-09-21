@@ -1,0 +1,84 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "OpenEntity Channels (internal)",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/users/{id}": {
+      "get": {
+        "operationId": "User.get",
+        "responses": {
+          "200": {
+            "description": "OEC internal response"
+          }
+        },
+        "x-oec-visibility": "internal",
+        "x-oec-channel": "rest",
+        "x-oec-behavior": "User.read",
+        "x-oec-body-kind": "none",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/users/{id}/events": {
+      "get": {
+        "operationId": "User.observe",
+        "responses": {
+          "200": {
+            "description": "OEC stream",
+            "content": {
+              "text/event-stream": {}
+            }
+          }
+        },
+        "x-oec-visibility": "internal",
+        "x-oec-channel": "rest",
+        "x-oec-behavior": "User.observe",
+        "x-oec-body-kind": "none",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-oec-stream": "sse"
+      }
+    }
+  },
+  "x-oec-visibility": "internal",
+  "x-oec-channels": [
+    {
+      "channel": "rest",
+      "entity": "User",
+      "visibility": "internal"
+    },
+    {
+      "channel": "grpc",
+      "entity": "User",
+      "visibility": "internal"
+    },
+    {
+      "channel": "mcp",
+      "entity": "User",
+      "visibility": "internal"
+    },
+    {
+      "channel": "local",
+      "entity": "User",
+      "visibility": "internal"
+    }
+  ]
+}

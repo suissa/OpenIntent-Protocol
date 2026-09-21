@@ -1,0 +1,132 @@
+{
+  "profile": "oec-0.1.0",
+  "declaration_sha256": "da251bd645c98dc69b4fc88f79ee9e76d8cdae8895e2575099224683e3f32926",
+  "generator": "@allascode/open-intent-protocol/oec",
+  "cases": [
+    {
+      "id": "User.rest.get.happy",
+      "kind": "happy"
+    },
+    {
+      "id": "User.rest.get.missing-header",
+      "kind": "missing-header",
+      "expected": "MISSING_REQUIRED_HEADER"
+    },
+    {
+      "id": "User.rest.get.method-mismatch",
+      "kind": "method-mismatch",
+      "expected": "METHOD_MISMATCH"
+    },
+    {
+      "id": "User.rest.get.path-mismatch",
+      "kind": "path-mismatch",
+      "expected": "PATH_MISMATCH"
+    },
+    {
+      "id": "User.rest.get.body-mismatch",
+      "kind": "body-mismatch",
+      "expected": "BODY_KIND_MISMATCH"
+    },
+    {
+      "id": "User.rest.observe.happy",
+      "kind": "happy"
+    },
+    {
+      "id": "User.rest.observe.missing-header",
+      "kind": "missing-header",
+      "expected": "MISSING_REQUIRED_HEADER"
+    },
+    {
+      "id": "User.rest.observe.method-mismatch",
+      "kind": "method-mismatch",
+      "expected": "METHOD_MISMATCH"
+    },
+    {
+      "id": "User.rest.observe.path-mismatch",
+      "kind": "path-mismatch",
+      "expected": "PATH_MISMATCH"
+    },
+    {
+      "id": "User.rest.observe.body-mismatch",
+      "kind": "body-mismatch",
+      "expected": "BODY_KIND_MISMATCH"
+    },
+    {
+      "id": "User.rest.observe.stream-accept",
+      "kind": "stream-accept",
+      "expected": "STREAM_ACCEPT_MISMATCH"
+    },
+    {
+      "id": "User.grpc.get.happy",
+      "kind": "happy"
+    },
+    {
+      "id": "User.grpc.get.missing-header",
+      "kind": "missing-header",
+      "expected": "MISSING_REQUIRED_HEADER"
+    },
+    {
+      "id": "User.grpc.get.method-mismatch",
+      "kind": "method-mismatch",
+      "expected": "METHOD_MISMATCH"
+    },
+    {
+      "id": "User.grpc.get.path-mismatch",
+      "kind": "path-mismatch",
+      "expected": "PATH_MISMATCH"
+    },
+    {
+      "id": "User.grpc.get.body-mismatch",
+      "kind": "body-mismatch",
+      "expected": "BODY_KIND_MISMATCH"
+    },
+    {
+      "id": "User.mcp.get.happy",
+      "kind": "happy"
+    },
+    {
+      "id": "User.mcp.get.missing-header",
+      "kind": "missing-header",
+      "expected": "MISSING_REQUIRED_HEADER"
+    },
+    {
+      "id": "User.mcp.get.method-mismatch",
+      "kind": "method-mismatch",
+      "expected": "METHOD_MISMATCH"
+    },
+    {
+      "id": "User.mcp.get.path-mismatch",
+      "kind": "path-mismatch",
+      "expected": "PATH_MISMATCH"
+    },
+    {
+      "id": "User.mcp.get.body-mismatch",
+      "kind": "body-mismatch",
+      "expected": "BODY_KIND_MISMATCH"
+    },
+    {
+      "id": "User.local.get.happy",
+      "kind": "happy"
+    },
+    {
+      "id": "User.local.get.missing-header",
+      "kind": "missing-header",
+      "expected": "MISSING_REQUIRED_HEADER"
+    },
+    {
+      "id": "User.local.get.method-mismatch",
+      "kind": "method-mismatch",
+      "expected": "METHOD_MISMATCH"
+    },
+    {
+      "id": "User.local.get.path-mismatch",
+      "kind": "path-mismatch",
+      "expected": "PATH_MISMATCH"
+    },
+    {
+      "id": "User.local.get.body-mismatch",
+      "kind": "body-mismatch",
+      "expected": "BODY_KIND_MISMATCH"
+    }
+  ]
+}

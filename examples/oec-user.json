@@ -1,0 +1,90 @@
+{
+  "protocol": "EntityCommunicationProtocol",
+  "version": "0.1.0",
+  "visibility": "internal",
+  "defaults": {
+    "requiredHeaders": [
+      "X-OEC-Trace-Id",
+      "X-OEC-Agent-Id"
+    ],
+    "hashing": {
+      "algorithm": "hmacSha256",
+      "secretRef": "vault://oec/route-hash-secret",
+      "input": [
+        "entityName",
+        "entityId",
+        "behavior",
+        "channel",
+        "method",
+        "path",
+        "bodyKind"
+      ]
+    }
+  },
+  "entities": {
+    "User": {
+      "schemaRef": "./entities/User.json",
+      "idField": "id",
+      "canonicalLabel": "name",
+      "channels": {
+        "rest": {
+          "enabled": true,
+          "base": "/users",
+          "routes": [
+            {
+              "name": "get",
+              "method": "GET",
+              "path": "/:id",
+              "behavior": "User.read",
+              "body": "none"
+            },
+            {
+              "name": "observe",
+              "method": "GET",
+              "path": "/:id/events",
+              "behavior": "User.observe",
+              "stream": "sse",
+              "accept": ["text/event-stream"]
+            }
+          ]
+        },
+        "grpc": {
+          "enabled": true,
+          "routes": [
+            {
+              "name": "get",
+              "method": "GET",
+              "path": "/:id",
+              "behavior": "User.read",
+              "body": "none"
+            }
+          ]
+        },
+        "mcp": {
+          "enabled": true,
+          "routes": [
+            {
+              "name": "get",
+              "method": "GET",
+              "path": "/:id",
+              "behavior": "User.read",
+              "body": "none"
+            }
+          ]
+        },
+        "local": {
+          "enabled": true,
+          "routes": [
+            {
+              "name": "get",
+              "method": "GET",
+              "path": "/:id",
+              "behavior": "User.read",
+              "body": "none"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

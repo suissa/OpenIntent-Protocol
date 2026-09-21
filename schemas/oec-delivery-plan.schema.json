@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openintent.org/schemas/oec-delivery-plan-0.1.0.json",
+  "title": "Internal OEC Delivery Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["intent_id", "execution_id", "entity", "entity_id", "behavior", "channel", "route", "visibility", "policy_reason"],
+  "properties": {
+    "intent_id": {"type": "string", "minLength": 1},
+    "execution_id": {"type": "string", "minLength": 1},
+    "entity": {"type": "string", "minLength": 1},
+    "entity_id": {"type": "string", "minLength": 1},
+    "behavior": {"type": "string", "minLength": 1},
+    "channel": {"enum": ["rest", "websocket", "grpc", "mcp", "stdio", "local"]},
+    "route": {"type": "string", "minLength": 1},
+    "route_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "visibility": {"const": "internal"},
+    "policy_reason": {"type": "string", "minLength": 1}
+  }
+}
